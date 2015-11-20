@@ -1,0 +1,603 @@
+@import "utilities/retina-sprites";  // import once for all sprites
+@import "compass/css3/font-face";
+@import "compass/css3/transform";
+@import "compass/css3/transition";
+@import "compass/css3/box-shadow";
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	font-size: 62.5%;
+	color: rgb(46, 46, 46);
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    background-color: #FFFFFF;
+}
+
+/* ---- Colorpalette ------------------------------------------ */
+
+$white1 : #F5F5F5;
+$white2 : #FEFEFE;
+
+$grey1 : #333333;
+$grey2 : #4C4F56;
+$grey3 : #808080;
+
+$blue1 : #52A6E6;
+$blue2 : #293744;
+$blue3 : #212A34;
+
+$green1 : #82B440;
+$green2 : #89BB34;
+
+$orange : #F67D41;
+$yellow : #FFDD5F;
+$purple : #47208F;
+
+/* ---- Fonts ------------------------------------------------- */
+
+$neue_bold : "helveticaneue_bold";
+$neue_medium : "helveticaneue_medium";
+$montserrat : "montserrat_regular";
+
+@include font-face($neue_bold, font-files("helveticaneue_bold.woff", "helveticaneue_bold.ttf", "helveticaneue_bold.svg"), "helveticaneue_bold.eot");
+@include font-face($neue_medium, font-files("helveticaneue_medium.woff", "helveticaneue_medium.ttf", "helveticaneue_medium.svg"), "helveticaneue_medium.eot");
+@include font-face($montserrat, font-files("montserrat_regular.woff", "montserrat_regular.ttf", "montserrat_regular.svg"), "montserrat_regular.eot");
+
+/* ---- Retina Sprites ---------------------------------------- */
+
+$sprites: sprite-map("sprites/layout/*.png", $spacing: 30px);
+$sprites2x: sprite-map("sprites-retina/layout/*.png", $spacing: 60px);
+
+/*.logoGAdventures{
+	@include retina-sprite(LogoGAdventures);
+}*/
+
+.logoGTravelRoulette{
+	@include retina-sprite(LogoGTravelRoulette);
+}
+
+.infoButton{
+	@include retina-sprite(Infobutton);
+}
+
+.checkedButton{
+	@include retina-sprite(CheckedButton);
+}
+
+/* ---- Global ------------------------------------------------ */
+
+#container header > h1{
+	display: none;
+}
+
+#container{
+	width: 100%;
+	overflow: hidden;
+}
+
+#content{
+	position: absolute;
+	width: 100%;
+	height: 560px;
+	top: 120px;
+	overflow: hidden;
+}
+
+#pages{
+	position: absolute;
+	width: 500%;
+	overflow: hidden;
+	@include transition-duration(.7s);
+	@include transition-property(left);
+	@include transition-timing-function(ease-in-out);
+}
+
+#content.noScroll, #content.noScroll #pages{
+	height: 560px;
+}
+
+#content.scrollable, #content.scrollable #pages{
+	height: 3000px;
+}
+
+#pages.IntroPage{
+	left: 0%;
+}
+
+#pages.Step1TravelStylesPage{
+	left: -100%;
+}
+
+#pages.Step2InterestsPage{
+	left: -200%;
+}
+
+#pages.Step3LocationsPage{
+	left: -300%;
+}
+
+#pages.WrapUpPage{
+	left: -400%;
+}
+
+#pages > article{
+
+	position: relative;
+	width: 20%;
+	height: 100%;
+	float: left;
+
+	h2, p.details{
+		position: relative;
+		margin: 0 auto;
+		width: 910px;
+		text-align: center;
+	}
+
+	h2{
+		margin-top: 22px;
+		margin-bottom: 22px;
+		color: $grey1;
+		font-family: $montserrat;
+		font-size: 3.1em;
+	}
+
+	p.details{
+		margin-top: 8px;
+		margin-bottom: 8px;
+		color: $grey3;
+		font-family: $neue_medium;
+		font-size: 1.4em;
+	}	
+
+}
+
+.hide{
+	width: 0px;
+	height: 0px;
+	overflow: hidden;
+}
+
+.hidden{
+	@include transition-duration(.3s);
+	@include transition-property(opacity);
+	@include transition-timing-function(ease-in);
+	opacity: 0;
+}
+
+/* ---- Header ------------------------------------------------ */
+
+.bgBar{
+	position: absolute;
+	height: 50px;
+	left: 0;
+	width: 100%;
+	background-repeat: repeat-x;
+	z-index: 100;
+}
+
+.headerBgBar{
+	top: 0;
+	background-color: $purple;
+}
+
+#container > header{
+	
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	z-index: 90;
+
+	nav a span{
+		display: none;
+	}
+
+	h1.logoWrapper{
+	  	position: fixed;
+		left: 50%;
+		margin-left: -416px;
+		margin-top: 0px;
+		display: block;
+		z-index: 110;
+		
+		a.logoGAdventures, a.logoGTravelRoulette{
+			@include transform-origin(50%, 0%);
+			@include transform(scale(0.4, 0.4));
+		}
+
+		a{
+			display: block;
+		}
+
+		span{
+			display: none;
+		}
+
+	}
+
+}
+
+/* ---- Pre Form: Home > Intro Page ----------------------------------------------- */
+
+#IntroPage{
+
+	iframe{
+		position: relative;
+		//width: 670px;
+		//height: 376px;
+		width: 534px;
+		height: 300px;
+		left: 50%;
+		margin-left: -267px;
+		margin-top: 0px;
+		margin-bottom: 24px;
+		border: none;
+	}
+
+	a.startButton{
+		margin-top: 40px;
+		text-decoration: none;
+	}
+
+}
+
+/* ---- Form: Step 1 > Travel Styles Page ----------------------------------------- */
+
+.travelstyles{
+	position: absolute;
+	width: 910px;
+	height: 400px;
+	left: 50%;
+	margin-left: -455px;
+	margin-top: 30px;
+}
+
+.travelstyleTile{
+
+	display: block;
+	width: 130px;
+	height: 260px;
+	overflow: hidden;
+	background-size: cover;
+	float: left;
+
+	.topBar, .travelstyleInfo{
+		position: relative;
+		width: 130px;
+		background-color: rgba(71, 32, 143, .9);
+		@include transition-duration(.3s);
+		@include transition-timing-function(ease-in);
+	}
+
+	.topBar{
+		height: 20px;
+		top: -20px;
+	}
+
+	.travelstyleInfo{
+
+		height: 200px;
+		top: 260px;
+		padding-top: 10px;
+		perspective: 1000;
+
+		p{
+			width: 130px;
+			margin: 6px 0px;
+			color: $white1;
+			font-size: 1.4em;
+			font-family: $montserrat;
+			text-align: center;
+		}
+
+		a{
+			text-decoration: none;
+		}
+
+	}
+
+	.flipButton, .front, .back{
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
+
+	.flipButton{
+		
+		position: relative;
+		margin: 15px 41px;
+		@include transition-duration(.3s);
+		@include transition-timing-function(ease-in);
+		border: white solid 4px;
+		transform-style: preserve-3d;
+
+		.front, .back{
+			position: absolute;
+			backface-visibility: hidden;
+			top: 0;
+			left: 0;
+		}
+
+		.front{
+			z-index: 10;
+			transform: rotateY(0deg);
+			background-color: $blue1;
+		}
+
+		.back{
+			z-index: 0;
+			transform: rotateY(180deg);
+			background-color: $green1;
+		}
+
+	}
+
+}
+
+.travelstyleTile:hover, .travelstyleTile.checked{
+
+	cursor: pointer;
+
+	.topBar{
+		top: 0px;
+	}
+
+	.travelstyleInfo{
+		top: 60px;
+	}
+
+}
+
+.travelstyleTile.checked{
+	
+	.topBar, .travelstyleInfo{
+		background-color: rgba(130, 180, 34, .9);
+	}
+
+	.flipButton{
+		transform: rotateY(180deg);
+	}
+
+}
+
+.submitSection{
+
+	position: absolute;
+	width: 910px;
+	height: 200px;
+	top: 400px;
+	left: 50%;
+	margin-left: -455px;
+	margin-top: 70px;
+	text-align: center;
+	@include transition-duration(.3s);
+	@include transition-property(opacity);
+	@include transition-timing-function(ease-in);
+
+	input[type="submit"], a.startButton{
+		padding: 10px 24px 6px 24px;
+		border: none;
+		color: $white1;
+		font-size: 1.8em;
+		font-family: $neue_bold;
+		@include transition-duration(.3s);
+		@include transition-timing-function(ease-in);
+		background-color: $purple;
+	}
+
+	input[type="submit"]:hover, a.startButton{
+		background-color: $green1;
+	}
+
+}
+
+input[name="submitTravelstyles"]{
+	background-color: $purple;
+}
+
+/* ---- Form: Step 2 > Travel Interests Page -------------------------------------------- */
+
+.interestcards{
+	position: absolute;
+	width: 910px;
+	height: 500px;
+	left: 50%;
+	margin-left: -455px;
+}
+
+ul.stack{
+	position: absolute;
+	top: 30px;
+	left: 50%;
+	width: 200px;
+	height: 300px;
+	margin-left: -100px;
+	background: $grey3;
+	border-radius: 10px;
+}
+
+li.interestCard{
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 200px;
+	height: 300px;
+	border-radius: 5px;
+	list-style: none;
+	box-shadow: 0 0 2px rgba(0,0,0,.2), 1px 1px 1px rgba(0,0,0,.2);
+	text-align: center;
+	overflow: hidden;
+	box-sizing: border-box;
+	cursor: pointer;
+
+	h3.interestName{
+		position: relative;
+		padding: 10px 0px;
+		margin-top: 260px;
+		font-size: 1.8em;
+		font-family: $montserrat;
+		color: $white1;
+		@include transition-duration(.3s);
+		@include transition-timing-function(ease-in);
+		background-color: rgba(71, 32, 143, .8);;
+	}
+
+}
+
+li.interested h3.interestName{
+	background-color: rgba(130, 180, 34, .8);
+}
+
+li.uninterested h3.interestName{
+	background-color: rgba(255, 221, 95, .8);
+}
+
+ul.interestcards li.in-deck:nth-child(3) {
+    top: 2px;
+    transform: translate(2px, 2px) rotate(0.4deg);
+}
+
+ul.interestcards li.in-deck:nth-child(2) {
+    top: 4px;
+    transform: translate(-4px, -2px) rotate(-1deg);
+}
+
+input[name="submitInterests"]{
+	margin-top: 10px;
+	background-color: $purple;
+}
+
+/* ---- Form: Step 3 > Preferred Locations Page -------------------------------------------- */
+
+.locales{
+	position: absolute;
+	width: 880px;
+	height: 2000px;
+	left: 50%;
+	margin-left: -440px;
+	margin-top: 30px;
+}
+
+.localeTile{
+
+	width: 200px;
+	height: auto;
+	margin: 10px;
+	cursor: pointer;
+
+	img{
+		z-index: 10;
+	}
+
+	h3.locale{
+		display: block;
+		padding: 10px 0px;
+		font-size: 1.8em;
+		font-family: $montserrat;
+		text-align: center;
+		color: $white1;
+		@include transition-duration(.3s);
+		@include transition-timing-function(ease-in);
+		background-color: rgba(71, 32, 143, .8);;
+		z-index: 20;
+	}
+
+}
+
+.localeTile:hover{
+
+	h3.locale{
+		background-color: rgba(82, 166, 230, .8);
+	}
+
+}
+
+.localeTile.checked{
+
+	h3.locale{
+		background-color: rgba(130, 180, 34, .8);
+	}
+
+}
+
+#Step3LocationsPage{
+
+	.submitSection{
+
+		position: fixed;
+		width: 900px;
+		height: 57px;
+		top: 100%;
+		left: 50%;
+		margin-left: -450px;
+		margin-top: -57px;
+		text-align: center;
+		background-color: #FFF;
+
+		input[type="submit"]{
+			margin: 10px 0px;
+			background-color: $purple;
+		}
+
+		input[type="submit"]:hover{
+			background-color: $green1;
+		}
+
+	}
+
+}
+
+/* ---- Form: WrapUp > Personal Info -------------------------------------------- */
+
+.personalData{
+
+	position: absolute;
+    height: 250px;
+    width: 470px;
+    left: 50%;
+    margin-top: 20px;
+    margin-left: -235px;
+    background-color: $white1;
+
+    fieldset{
+    	padding: 40px 40px;
+    	border: none;
+    }
+
+    label{
+    	position: relative;
+    	display: block;
+    	font-size: 1.8em;
+    	font-family: $neue_bold;
+	    color: $grey1;
+	    margin-bottom: 12px;
+    }
+
+    input[type="text"], input[type="email"]{
+    	position: relative;
+    	display: block;
+    	width: 90%;
+	    height: 33px;
+	    color: $blue1;
+	    font-size: 1.4em;
+	    font-family: $montserrat;
+	    background-color: $white2;
+	    padding: 0px 24px 0px 12px;
+	    border: none;
+	    outline: none;
+	    border-radius: 4px;
+	    margin-bottom: 16px;
+    }
+
+}
+
+input[name="submitUseInfo"]{
+
+	margin-top: -50px;
+
+}
+
